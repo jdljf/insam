@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="/static/lib/bootstrap.css" />
+<link rel="stylesheet" href="/static/css/admin/tag.min.css" />
+<div class="content-app">
+    <div class="col-lg-12">
+       <ul class="tag-list list-unstyled">
+           <li v-for="item in tagList">
+               <input type="text" class="form-control tag-name" v-model="item.label" placeholder="标签名" />
+               <input type="text" class="form-control tag-index" v-model="item.order_index" placeholder="序号" />
+               <span class="btn btn-danger btn-sm" @click="deleteLabel(item)">删除</span>
+               <span class="btn btn-info btn-sm" @click="saveTag(item)">保存</span>
+           </li>
+           <li>
+               <input type="text" class="form-control tag-name" v-model="newLabel" placeholder="标签名" />
+               <input type="text" class="form-control tag-index" v-model="newIndex" placeholder="序号" />
+               <span class="btn btn-info btn-sm" @click="addLabel">添加</span>
+           </li>
+       </ul>
+
+
+    </div>
+</div>
+<script src="/static/lib/vue.js"></script>
+<script src="/static/lib/axios.js"></script>
+<script src="/static/js/index/admin/tag.min.js?v=1"></script>

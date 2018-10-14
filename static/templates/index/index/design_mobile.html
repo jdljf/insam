@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>定制</title>
+    <meta name="description" content="D4U" />
+    <meta content="文化衫定制,D4U" name="keywords" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/index/index/design.min.css?v=2" />
+</head>
+
+<body>
+    
+    <div class="mobile-app">
+        <div class="app-header">
+            <div class="logo-wrap">
+                <h1>INSAM</h1>
+            </div>
+            <!--<span class="page-title" v-if="styleType == 1">数码彩喷</span>-->
+            <!--<span class="page-title" v-if="styleType == 2">激光速绘</span>-->
+            <span class="page-title" v-text="styleType == 1 ? '数码彩喷' : '激光速绘'"></span>
+            <a href="/user/">
+                <img src="{:Session::get('avatar')}" class="user-image" />
+            </a>
+        </div>
+
+        <div class="edit-box" ref="editBox" id="editBox">
+            <img :src="styleUrl" ref="baseImage" class="shirt-bg" id="baseImage" />
+            <div class="double-face" ref="doubleFace">
+                <div class="face" :class="{faceActive:main}" @click="showMain">正面</div>
+                <div class="face" :class="{faceActive:!main}" @click="showReverse">背面</div>
+            </div>
+
+            <ul class="info" v-cloak ref="info">
+                <li style="font-size: 0;">
+                    <span class="desc">款式价：</span>
+
+                    <div class="style-infos">
+                        <span v-if="designData.style.sex==1">男款 </span>
+                        <span v-if="designData.style.sex==2">女款 </span>
+                        <span v-if="designData.style.material==7">纯棉 </span>
+                        <span v-if="designData.style.material==8">棉麻 </span>
+                        <span v-if="designData.style.level==9">中档 </span>
+                        <span v-if="designData.style.level==10">高档 </span>
+                        <span v-if="designData.style.size=='S'">S码</span>
+                        <span v-if="designData.style.size=='M'">M码</span>
+                        <span v-if="designData.style.size=='L'">L码</span>
+                        <span v-if="designData.style.size=='XL'">XL码</span>
+                        <span v-if="designData.style.size=='XXL'">XXL码</span>
+                        <span v-if="designData.style.size=='XXXL'">XXXL码</span>
+
+                    </div>
+                    <span style="font-size: 0.9rem;" class="price-info">
+                        <span v-show="showcost" class="discount">优惠</span>￥{{stylePrice}}
+                    </span>
+                </li>
+
+                <div v-show="showcost" class="cost-price" style="height: 0.7rem;line-height: 0.7rem;font-size: 0.7rem;text-align: right;padding-right: 10px;">￥{{costPrice}}</div>
+                <li style="font-size: 0;">
+                    <span class="desc">图案：</span>
+
+                    <div class="style-info">
+                        {{imageName}}
+                    </div>
+                    <span class="price-info">
+                        ￥{{imagePrice}}
+                    </span>
+                </li>
+
+                <li>
+                    <span class="desc">价格：</span>
+
+                    <span class="price-info total-price">
+                        ￥{{totalPrice}}
+                    </span>
+                </li>
+            </ul>
+            <div class="addImage" :style="imageEditTag?'border:1px dashed #ff0000':''">
+                <div class="img-container" :style="imageMoveTag?'border:1px solid #00ffff':''">
+                    <img :src="imageUrl" ref="addImage" id="img" alt="">
+                    <i class="circle left-top" v-show="imageMoveTag"></i>
+                    <i class="circle left-middle" v-show="imageMoveTag"></i>
+                    <i class="circle left-bottom" v-show="imageMoveTag"></i>
+                    <i class="circle right-top" v-show="imageMoveTag"></i>
+                    <i class="circle right-middle" v-show="imageMoveTag"></i>
+                    <i class="circle right-bottom" v-show="imageMoveTag"></i>
+                    <i class="circle top-middle" v-show="imageMoveTag"></i>
+                    <i class="circle bottom-middle" v-show="imageMoveTag"></i>
+                </div>
+            </div>
+            <div class="tips" v-show="imageEditTag" v-cloak>
+                <p>红框为可打印区域(28x38cm)</p>
+                <span>移动图案可调整位置和大小</span>
+            </div>
+        </div>
+
+        <div class="image-style-container" :style="curTab == 'image' ? 'display:block' : ''" ref="mainContent">
+            <div class="main-content">
+                <div class="image-style-title">上传我的图片</div>
+
+                <div class="customer-image-wrap">
+                    <!--<div class="customer-image-wrap" v-show="designData.image.type == 'custom'">-->
+                    <div id="upload-btn" class="upload-image-wrap">
+                        <i class="iconfont">&#xe7a6;</i>
+                        {{uploadText}}
+                    </div>
+                    <div class="upload-image-remind">非透明的背景部分，若不需印制请处理后再上传 图片支持JPG/PNG格式，建议高精度(300dpi)，像素 &gt;1000*1000 如何查看像素大小？
+                    </div>
+
+                </div>
+                <div class="image-classify">
+                    <div class="classify-title">从素材库选择</div>
+                    <div class="classifys">
+                        <span class="item-value main-item">分类</span>
+                        <div class="label-detail">
+                            <span class="item-value" :class="designData.image.label == item  ? 'selected' : ''" @click="changeImageLabel('system', item)"
+                                v-for="item in recommendLabel" v-text="item"></span>
+                        </div>
+                    </div>
+                    <div class="image-list" v-show="designData.image.type == 'system'" ref="imageList">
+                        <div class="doubleList" style="margin-right: 0.2rem;">
+                            <div class="image-item" :class="{'selected':index==imageIndex}" v-for="(item,index) in imageUrlInfo" @click="addImage($event,index)"
+                                v-if="index%2!==1">
+                                <img :src="upload+item.positive">
+                                <div class="image-info">
+                                    <span class="image-name">{{imageNameInfo[index]}}</span>
+                                    <span class="image-price">￥{{imagePriceInfo[index]}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="doubleList">
+                            <div class="image-item" :class="{'selected':index==imageIndex}" v-for="(item,index) in imageUrlInfo" @click="addImage($event,index)"
+                                v-if="index%2 == 1">
+                                <img :src="upload+item.positive">
+                                <div class="image-info">
+                                    <span class="image-name">{{imageNameInfo[index]}}</span>
+                                    <span class="image-price">￥{{imagePriceInfo[index]}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="image-confirm" ref="imageSubmit" v-cloak v-if="curTab == 'image' " @click="confirm">确定</div>
+        <!--选款式-->
+        <div class="bottom-container">
+            <div class="cloth-style-container" :style="curTab == 'style' ? 'display:block': ''">
+                <div class="header-content">
+                    <span class="style-selected-item">选择订制属性</span>
+                </div>
+                <div class="main-content">
+                    <div class="content-item">
+                        <label class="item-label">性别</label>
+                        <div class="item-value-wrap">
+                            <span class="item-value" :class="[designData.style.sex == item.id ? 'selected' : '',stock.sex.indexOf(item.id)==-1?'empty':'']"
+                                @click="designData.style.sex = item.id" v-for="item in styleTypeList.sex" v-text="item.content"></span>
+                        </div>
+                    </div>
+                    <div class="content-item">
+                        <label class="item-label">颜色</label>
+                        <div class="item-value-wrap" ref="color">
+                            <span class="item-value" :class="[designData.style.color == item.id ? 'selected' : '',stock.color.indexOf(item.id)==-1?'empty':'']"
+                                @click="designData.style.color = item.id" v-for="item in styleTypeList.color" v-text="item.content"></span>
+                        </div>
+                    </div>
+                    <div class="content-item">
+                        <label class="item-label">版型</label>
+                        <div class="item-value-wrap" ref="style">
+                            <span class="item-value" :class="[designData.style.style == item.id ? 'selected' : '',stock.style.indexOf(item.id)==-1?'empty':'']"
+                                @click="designData.style.style = item.id" v-for="item in styleTypeList.style" v-text="item.content"></span>
+                        </div>
+                    </div>
+                    <div class="content-item">
+                        <label class="item-label">材质</label>
+                        <div class="item-value-wrap" ref="material">
+                            <span class="item-value" :class="[designData.style.material == item.id? 'selected' : '',stock.material.indexOf(item.id)==-1?'empty':'']"
+                                @click="designData.style.material = item.id" v-for="item in styleTypeList.material" v-text="item.content"></span>
+                        </div>
+                    </div>
+                    <div class="content-item">
+                        <label class="item-label">档次</label>
+                        <div class="item-value-wrap" ref="level">
+                            <span class="item-value" :class="[designData.style.level == item.id ? 'selected' : '',stock.level.indexOf(item.id)==-1?'empty':'']"
+                                @click="designData.style.level = item.id" v-for="item in styleTypeList.level" v-text="item.content"></span>
+                        </div>
+                    </div>
+                    <div class="content-item">
+                        <label class="item-label">尺寸</label>
+                        <div class="item-value-wrap" ref="size">
+                            <span class="item-value" :class="[designData.style.size == item.name ? 'selected' : '',stock.cloth_size.indexOf(item.name)!=-1?'empty':'']"
+                                @click="designData.style.size = item.name" v-for="(item,index) in sizeList" v-text="item.name"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="style-confirm" ref="imageSubmit" v-cloak v-if="curTab == 'style' " @click="style_confirm">确定</div>
+
+            <!--购买？-->
+            <div class="buy-info-container" :style="curTab == 'checkout' ? 'display:block' : ''">
+                <div class="header-content">
+                    <span class="style-selected-item">小猪佩奇 纯白 圆领</span>
+                    <span class="total-price-item">{{checkoutInfo.curPrice}}元</span>
+                </div>
+                <div class="main-content">
+                    <div class="content-item">
+                        <label class="item-label">件数</label>
+                        <div class="item-value-wrap">
+                            <input type="number" class="checkout-number" v-model="checkoutInfo.number" placeholder="要购买的数量" />
+                        </div>
+                    </div>
+                    <div class="content-item">
+                        <label class="item-label">合计</label>
+                        <div class="item-value-wrap">
+                            <span class='item-value price-value'>{{checkoutInfo.curPrice * checkoutInfo.number}}元</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer" v-show="curTab==''">
+                <span class="cloth-style-item" @click="changeTab('style')">
+                    选款式
+                </span>
+                <span class="image-style-item" @click="changeTab('image')">
+                    选图案
+                </span>
+                <span class="confirm-btn" v-text="buyText" @click="createOrder" :class="{underline:checkShow}">
+                    立即购买
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" value="{:input('get.t')}" id="style-type" /> {include file="index/footer_mobile" /}
+    <script src="/static/lib/plupload/plupload.full.min.js"></script>
+    <!-- <script src="/static/js/index/index/design_mobile.min.js?v=2"></script> -->
+    <script src="/static/lib/lodash.js"></script>
+    <script src="/static/lib/jquery-3.3.1.js"></script>
+    <!-- <script src="/static/lib/lazyload.js"></script> -->
+    <script src="/static/js/index/index/design_mobile.min.js?v=11"></script>
+
+</body>
+
+</html>

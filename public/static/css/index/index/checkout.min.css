@@ -1,0 +1,480 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: KaiTi;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+@font-face {
+  font-family: 'iconfont';
+  /* project id 663857 */
+  src: url("//at.alicdn.com/t/font_663857_xu513syf1ng.eot");
+  src: url("//at.alicdn.com/t/font_663857_xu513syf1ng.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.woff") format("woff"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.ttf") format("truetype"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.svg#iconfont") format("svg"); }
+
+.clearfix:after, .mobile-app .app-header:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale; }
+
+.mobile-app {
+  background: #f4f4f4; }
+  .mobile-app .app-header {
+    padding: 10px 15px;
+    background-color: #fff;
+    border-bottom: 1px solid #e2e2e2; }
+    .mobile-app .app-header .logo-wrap {
+      float: left; }
+      .mobile-app .app-header .logo-wrap h1 {
+        margin-top: 8px;
+        font-size: 20px;
+        color: black; }
+        .mobile-app .app-header .logo-wrap h1 .slogan {
+          font-size: 14px;
+          margin-top: 8px;
+          color: #666; }
+        .mobile-app .app-header .logo-wrap h1:after {
+          content: '';
+          display: block;
+          width: 30px;
+          height: 3px;
+          font-size: 12px;
+          background: black;
+          -ms-transform: translate(4px, 0);
+              transform: translate(4px, 0); }
+    .mobile-app .app-header .user-image {
+      border-radius: 30px;
+      width: 40px;
+      height: 40px;
+      float: right; }
+  .mobile-app .address-wrap {
+    background: #fff;
+    color: #a8a8a8;
+    margin-bottom: 6px;
+    padding: 10px; }
+    .mobile-app .address-wrap .address-empty {
+      text-align: center;
+      padding: 30px 0;
+      border: 1px dashed gray; }
+    .mobile-app .address-wrap .address-edit {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 100;
+      width: 100%;
+      height: 100%;
+      background-color: white; }
+      .mobile-app .address-wrap .address-edit .change {
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.8);
+        background-color: #fff; }
+      .mobile-app .address-wrap .address-edit input {
+        display: block;
+        width: 100%;
+        height: 50px;
+        margin: 0 10px;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+      .mobile-app .address-wrap .address-edit .save {
+        position: absolute;
+        display: inline-block;
+        right: 10px;
+        top: 10px;
+        color: rgba(0, 0, 0, 0.8);
+        font-weight: bold; }
+    .mobile-app .address-wrap .address-exist {
+      position: relative;
+      border: 1px dashed gray;
+      padding: 30px 0;
+      border: 1px dashed gray; }
+      .mobile-app .address-wrap .address-exist .person {
+        padding: 0 10px; }
+        .mobile-app .address-wrap .address-exist .person .phone {
+          position: absolute;
+          right: 20px; }
+      .mobile-app .address-wrap .address-exist .address {
+        display: inline-block;
+        margin-left: 10px;
+        margin-top: 15px; }
+  .mobile-app .shopping-discount {
+    position: relative;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    background: #fff;
+    font-size: 16px; }
+    .mobile-app .shopping-discount .coupon-number {
+      position: absolute;
+      right: 20px;
+      background: #ff4418;
+      color: #FFFFFF;
+      height: 18px;
+      max-width: 50%;
+      display: inline-block;
+      border-radius: 2px;
+      text-align: center; }
+      .mobile-app .shopping-discount .coupon-number .coupon-use {
+        display: inline-block;
+        padding: 2px 2px;
+        margin-bottom: 1px;
+        font-size: 12px;
+        -ms-transform: scale(0.9);
+            transform: scale(0.9);
+        letter-spacing: 2px;
+        font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    .mobile-app .shopping-discount .coupon-icon {
+      position: absolute;
+      right: 8px;
+      font-size: 18px;
+      color: silver; }
+  .mobile-app .coupon-px {
+    display: inline-block; }
+  .mobile-app .coupon-filter-wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); }
+    .mobile-app .coupon-filter-wrap .coupon-list-filter {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0; }
+    .mobile-app .coupon-filter-wrap .coupon-list {
+      position: fixed;
+      bottom: 0px;
+      z-index: 100;
+      width: 100%;
+      height: 60%;
+      overflow: scroll;
+      background-color: #fff; }
+      .mobile-app .coupon-filter-wrap .coupon-list .coupon-list-title {
+        padding-top: 10px;
+        text-align: center;
+        position: relative; }
+      .mobile-app .coupon-filter-wrap .coupon-list .coupon-list-close {
+        color: gray;
+        position: absolute;
+        right: 5px; }
+      .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap {
+        font-size: 13px;
+        line-height: 13px;
+        margin-top: 20px;
+        margin-bottom: 70px; }
+        .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item {
+          position: relative;
+          display: block;
+          width: 96%;
+          height: 70px;
+          margin-top: 8px;
+          padding: 0 5px;
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+          background-color: #f2f4f6; }
+          .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-item-title {
+            background-color: #ff7b00;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            color: #FFFFFF;
+            width: 6%;
+            height: 70px; }
+            .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-item-title .coupon-item-sp {
+              font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+              font-size: 12px;
+              line-height: 23px;
+              -ms-transform: scale(0.9);
+                  transform: scale(0.9);
+              display: inline-block;
+              padding: 0px 4px; }
+          .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-item-detail {
+            color: orangered;
+            width: 15%;
+            margin-left: 5px;
+            vertical-align: middle; }
+            .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-item-detail span:nth-child(1) {
+              font-size: 16px;
+              display: block;
+              height: 50px; }
+            .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-item-detail span:nth-child(2) {
+              display: inline-block;
+              font-size: 27px; }
+            .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-item-detail span strong {
+              font-size: 24px; }
+          .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-item-info {
+            width: 50%;
+            position: relative;
+            top: -9px; }
+            .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-item-info span:nth-child(1) {
+              font-size: 12px;
+              color: #666;
+              font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+              letter-spacing: 1px; }
+            .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-item-info span:nth-child(2) {
+              display: inline-block;
+              margin-top: 10px;
+              font-size: 14px;
+              font-family: Arial;
+              letter-spacing: 1px; }
+          .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-line {
+            float: right;
+            height: 70px;
+            width: 1px;
+            border-bottom: none;
+            border-left: none;
+            border-top: none;
+            border-right: 1px solid silver;
+            box-shadow: 1px 1px 1px silver;
+            opacity: 0.1;
+            margin-right: 65px; }
+          .mobile-app .coupon-filter-wrap .coupon-list .coupon-wrap .coupon-item .coupon-item-bar {
+            height: 20px;
+            width: 50px;
+            position: absolute;
+            right: 10px;
+            top: 25px;
+            line-height: 20px;
+            text-align: center;
+            color: #FFFFFF;
+            border-radius: 10px;
+            background-color: #ff605d; }
+  .mobile-app .checkout-content {
+    background: #fff;
+    font-size: 14px;
+    margin-bottom: 5px; }
+    .mobile-app .checkout-content .design-content {
+      padding: 5px 0px;
+      overflow: hidden; }
+      .mobile-app .checkout-content .design-content .title-item {
+        position: relative;
+        background: #fff;
+        padding: 10px 10px 20px 14px;
+        overflow: hidden;
+        border-bottom: 5px solid #f4f4f4; }
+        .mobile-app .checkout-content .design-content .title-item .design {
+          line-height: 14px;
+          margin: 10px 0; }
+        .mobile-app .checkout-content .design-content .title-item .picture {
+          display: inline-block;
+          vertical-align: top; }
+        .mobile-app .checkout-content .design-content .title-item .detail {
+          display: inline-block;
+          font-size: 0.8rem;
+          max-width: 60%; }
+          .mobile-app .checkout-content .design-content .title-item .detail .style {
+            color: rgba(0, 0, 0, 0.7); }
+          .mobile-app .checkout-content .design-content .title-item .detail .num {
+            position: absolute;
+            right: 10px;
+            bottom: 20px; }
+          .mobile-app .checkout-content .design-content .title-item .detail .name {
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            overflow: hidden;
+            height: 1.6rem;
+            line-height: 0.9rem; }
+          .mobile-app .checkout-content .design-content .title-item .detail .singlePrice {
+            position: absolute;
+            right: 10px;
+            color: orangered;
+            font-weight: bold;
+            top: 44px; }
+          .mobile-app .checkout-content .design-content .title-item .detail .pattern {
+            margin-top: 8px;
+            color: rgba(0, 0, 0, 0.7); }
+    .mobile-app .checkout-content .total {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+          align-items: center;
+      position: relative;
+      margin: 0 10px;
+      padding: 10px 0;
+      background: #fff;
+      font-size: 0;
+      border-bottom: 1px solid #f4f4f4; }
+      .mobile-app .checkout-content .total .buy {
+        font-size: 0.8rem; }
+      .mobile-app .checkout-content .total .cart {
+        display: inline-block;
+        font-size: 0;
+        position: absolute;
+        right: 0px; }
+        .mobile-app .checkout-content .total .cart .add,
+        .mobile-app .checkout-content .total .cart .minus {
+          display: inline-block;
+          text-align: center;
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          font-size: 16px;
+          background-color: #f4f4f4; }
+        .mobile-app .checkout-content .total .cart .number {
+          padding: 0 15px;
+          font-size: 0.8rem; }
+    .mobile-app .checkout-content .shopping-wrap {
+      position: relative;
+      margin: 0 10px;
+      padding: 10px 0;
+      background: #fff;
+      font-size: 0.8rem;
+      border-bottom: 1px solid #f4f4f4; }
+      .mobile-app .checkout-content .shopping-wrap .item-content {
+        position: absolute;
+        right: 0px; }
+  .mobile-app .checkout-bottom {
+    font-size: 0.8rem;
+    background-color: #fff;
+    text-align: right;
+    line-height: 2rem; }
+    .mobile-app .checkout-bottom .totalPrice {
+      padding-right: 10px;
+      font-size: 0.8rem; }
+      .mobile-app .checkout-bottom .totalPrice .rmb {
+        margin-right: 5px; }
+      .mobile-app .checkout-bottom .totalPrice strong {
+        font-size: 1rem;
+        color: orangered; }
+  .mobile-app .footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #FAD033;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    color: #fff; }

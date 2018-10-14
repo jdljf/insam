@@ -1,0 +1,284 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: KaiTi;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+@font-face {
+  font-family: 'iconfont';
+  /* project id 663857 */
+  src: url("//at.alicdn.com/t/font_663857_xu513syf1ng.eot");
+  src: url("//at.alicdn.com/t/font_663857_xu513syf1ng.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.woff") format("woff"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.ttf") format("truetype"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.svg#iconfont") format("svg"); }
+
+.clearfix:after, .mobile-app .app-header:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale; }
+
+.mobile-app {
+  padding-bottom: 40px; }
+  .mobile-app .app-header {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border-bottom: 1px solid #e2e2e2; }
+    .mobile-app .app-header .logo-wrap {
+      display: inline-block; }
+      .mobile-app .app-header .logo-wrap h1 {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 20px;
+        color: black; }
+        .mobile-app .app-header .logo-wrap h1 .slogan {
+          font-size: 14px;
+          margin-top: 8px;
+          color: #666; }
+    .mobile-app .app-header .user-image {
+      position: absolute;
+      right: 15px;
+      top: 5px;
+      border-radius: 30px;
+      width: 40px;
+      height: 40px; }
+  .mobile-app .swiper-container {
+    width: 100%;
+    height: 13rem;
+    margin-top: 54px; }
+    .mobile-app .swiper-container .swiper-wrapper .swiper-slide a {
+      display: block;
+      width: 100%;
+      height: 100%; }
+      .mobile-app .swiper-container .swiper-wrapper .swiper-slide a img {
+        width: 100%;
+        height: 100%; }
+  .mobile-app .tabs .tab {
+    position: relative;
+    display: block;
+    padding: 1rem 0;
+    color: #000;
+    text-decoration: none;
+    background: #fff;
+    margin-bottom: 3px; }
+    .mobile-app .tabs .tab:last-child {
+      margin-bottom: 0; }
+    .mobile-app .tabs .tab img {
+      width: 70%; }
+    .mobile-app .tabs .tab .message {
+      position: absolute;
+      left: 70%;
+      bottom: 1.8rem; }
+      .mobile-app .tabs .tab .message div {
+        font-size: 0.8rem; }
+      .mobile-app .tabs .tab .message .lh {
+        height: 1.5rem; }
+  .mobile-app .waters {
+    column-count: 2;
+    column-gap: 0;
+    padding: 0 0.3rem; }
+    .mobile-app .waters .water {
+      width: 100%;
+      height: auto;
+      box-sizing: border-box;
+      break-inside: avoid;
+      padding: 0.1rem; }
+  .mobile-app nav a {
+    color: #666;
+    transition: all .5s;
+    font-size: 4rem; }
+  .mobile-app nav a.z-hv {
+    color: #233; }
+  .mobile-app .service {
+    position: fixed;
+    bottom: 3.2rem;
+    text-align: center;
+    text-decoration: none; }
+    .mobile-app .service img {
+      width: 3.3rem;
+      height: 3.3rem; }
+    .mobile-app .service .contact-service {
+      padding: 3px 0.7rem;
+      line-height: 0.8rem;
+      border-radius: 10px;
+      background-color: #fad033;
+      color: #101010;
+      font-size: 0.8rem;
+      text-align: center;
+      font-family: Arial;
+      text-decoration: none; }
+  .mobile-app .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2.6rem;
+    line-height: 2.6rem;
+    font-size: 0.8rem;
+    text-align: center;
+    background: #FAD033;
+    font-family: "microsoft yahei";
+    color: #000; }
+  .mobile-app .mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 3; }
+  .mobile-app .selects {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    font-size: 0.8rem;
+    color: #101010;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 8; }
+    .mobile-app .selects .please-select {
+      height: 1.8rem;
+      line-height: 1.8rem;
+      background: #bbb;
+      background: #FAD033; }
+    .mobile-app .selects .select-item {
+      display: block;
+      height: 2.7rem;
+      line-height: 2.7rem;
+      border-top: 1px solid #eeecec;
+      background: #fff;
+      text-decoration: none;
+      color: #101010; }
+
+.height {
+  padding-bottom: 9rem; }

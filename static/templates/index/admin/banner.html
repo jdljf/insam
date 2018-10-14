@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<link rel="stylesheet" href="/static/lib/bootstrap.css" />
+<link rel="stylesheet" href="/static/css/admin/banner.min.css" />
+<div class="content-app">
+    <div class="col-lg-12">
+        <!--<div class="user-info-overview">
+            <a href="javascript:void(0)" @click="page = page - 1">上一页</a>
+            <a href="javascript:void(0)" @click="page = page + 1">下一页</a>
+            <span>当第<input class="form-control page-input input-sm" type="text" v-model="page" />页（输入数字可直接跳转）</span>
+        </div>-->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="col-lg-1">banner编号</th>
+                    <th class="col-lg-4">图片地址</th>
+                    <th class="col-lg-3">跳转链接</th>
+                    <th class="col-lg-2">权重（从大到小）</th>
+                    <th class="col-lg-2">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in bannerList">
+                    <td class="col-lg-1">
+                    	<span v-show="bannerShow[index]" v-text="item.id"></span>
+                    	<input v-show="!bannerShow[index]" v-model="item.id" type="number" name="" id="" value="" />
+                    </td>
+                    <td class="col-lg-4">
+                        <img :src="'/uploads/' + item.image" alt="" style="max-width: 100%;display: block;max-height: 100px;"/>
+                				
+                    </td>
+                    <td class="col-lg-3">
+                    	<span v-show="bannerShow[index]" v-text="item.url"></span>
+                    	<input  v-show="!bannerShow[index]" v-model="item.url" type="" name="" id="" value="" />
+                    </td>
+                    <td class="col-lg-2">
+                    	<span v-show="bannerShow[index]" v-text="item.index"></span>
+                    	<input v-show="!bannerShow[index]" v-model="item.index" type="number" name="" id="" value="" />
+                    </td>
+                    <td class="col-lg-2">
+                        <span v-show="bannerShow[index]" @click="edit(index)" class="btn btn-primary btn-sm">编辑</span>
+                        <span v-show="!bannerShow[index]" @click="confirmBanner(index)" class="btn btn-primary btn-sm">确认</span>
+                        <span @click="deleteBanner(index)" class="btn btn-primary btn-sm">删除</span>
+                        <span v-show="!bannerShow[index]" @click="cancelEdit(index)" class="btn btn-primary btn-sm">取消</span>
+                    </td>
+                </tr>
+                <tr v-show="addNew">
+                	<td class="col-lg-1">
+                		<input v-model="form.id" type="number" name="" id="" value="" />
+                	</td>
+                	<td class="col-lg-4">
+                		 <!--<img v-show="editBoxValue.image.positive.length > 0" :src="'/uploads/' + editBoxValue.image.positive" />-->
+                		<img :src="'/uploads/' + form.image" alt="" style="max-width: 100%;display: block;max-height: 100px;"/>
+                		
+                	</td>
+                	<td class="col-lg-3">
+                		<input v-model="form.url" type="" name="" id="" value="" />
+                	</td>
+                	<td class="col-lg-2">
+                		<input v-model="form.index" type="number" name="" id="" value="" />
+                	</td>
+                	<td class="col-lg-2">
+                		<span @click="addBanner" class="btn btn-primary btn-sm">确认添加</span>
+                		<span @click="addNew = false" class="btn btn-primary btn-sm">取消添加</span>
+                	</td>
+                </tr>
+            </tbody>
+        </table>
+        <span @click="addNew = true" class="btn btn-primary btn-sm">添加新图片</span>
+        <span v-show="addNew" class="btn btn-primary btn-sm" id="upload-banner-btn">上传新图片</span>
+        <span v-show="editStatus" class="btn btn-primary btn-sm" id="edit-banner-btn">上传编辑图片</span>
+    </div>
+</div>
+<script src="/static/lib/vue.js"></script>
+<script src="/static/lib/axios.js"></script>
+<script src="/static/lib/plupload/plupload.full.min.js"></script>
+<script src="/static/js/index/admin/banner.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <meta name="description" content="" />
+    <meta content="" name="keywords" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/index/index/user.min.css?v=2" />
+</head>
+
+<body>
+    <div class="mobile-app">
+        <div class="user-info-wrap">
+            <!-- <p class="my"><i class="iconfont">我的主页</i></p> -->
+            <div class="user-info">
+                <!--<div class="tag">-->
+                    <!--<span class="tag-item selected">有个性</span>-->
+                    <!--<span class="tag-item">创意范</span>-->
+                <!--</div>-->
+                <img src="{:Session::get('avatar')}" class="user-image" />
+                <strong class="name">{:Session::get('nickname')}</strong>
+                <a class="info-edit-btn" href="/user/info">资料编辑</a>
+            </div>
+
+        </div>
+        <ul class="menu-list">
+            <li>
+                <a href="/order">
+                    <i class="iconfont main-icon">&#xe61f;</i>我的订单
+                    <i class="iconfont right-icon">&#xe68b;</i>
+                </a>
+            </li>
+            <li>
+                <a href="/my_design">
+                    <i class="iconfont main-icon">&#xe64f;</i>我的设计
+                    <i class="iconfont right-icon">&#xe68b;</i>
+                </a>
+            </li>
+						<li>
+                <a href="/coupon">
+                    <i class="iconfont main-icon">&#xe66a;</i>我的优惠券
+                    <i class="iconfont right-icon">&#xe68b;</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    {include file="index/footer_mobile" /}
+    <script src="/static/js/index/index/user_mobile.min.js"></script>
+</body>
+
+</html>

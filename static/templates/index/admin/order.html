@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="/static/lib/bootstrap.css" />
+<link rel="stylesheet" href="/static/css/admin/order.min.css" />
+<div class="content-app">
+    <div class="col-lg-12">
+        <div class="user-info-overview">
+            <a href="javascript:void(0)" @click="page = page - 1">上一页</a>
+            <a href="javascript:void(0)" @click="page = page + 1">下一页</a>
+            <span>当第<input class="form-control page-input input-sm" type="text" v-model="page" />页（输入数字可直接跳转）</span>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>订单编号</th>
+                    <th>订单设计稿（最终效果可与用户确认）</th>
+                    <th>件数</th>
+                    <th>总金额</th>
+                    <th>下单时间</th>
+                    <th>订单配送地址</th>
+                    <th>收货人</th>
+                    <th>电话号码</th>
+                    <th>
+                        订单状态
+                        <select class="form-control select-status" v-model="orderStatus">
+                            <option value="">全部</option>
+                            <option value="4">配送中</option>
+                            <option value="2">待确认</option>
+                            <option value="5">待付款</option>
+                            <option value="3">制作中</option>
+                            <option value="1">已完成</option>
+                            <option value="6">已取消</option>
+                        </select>
+                    </th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in orderList">
+                    <td v-text="item.order_id"></td>
+                    <td>
+                        <a target="_blank" :href="'/uploads/' + item.image.tif">TIF文件地址</a>
+                        <a target="_blank" :href="'/uploads/' + item.image.image_path">图案地址</a>
+                        <a target="_blank" :href="'/index/admin/preview_image?order_id=' + item.order_id">预览合成图</a>
+                        <span>
+                            {{item.style.sex_name}}/
+                            {{item.style.style_name}}/
+                            {{item.style.level_name}}/
+                            {{item.style.material_name}}/
+                            {{item.style.color_name}}/
+                            {{item.style.size}}码
+                        </span>
+                    </td>
+                    <td v-text="item.number"></td>
+                    <td v-text="item.total_fee"></td>
+                    <td v-text="item.ctime"></td>
+                    <td v-text="item.address"></td>
+                    <td v-text="item.name"></td>
+                    <td v-text="item.phone"></td>
+                    <td>
+                        <span v-if="item.status == 1">已完成</span>
+                        <span v-if="item.status == 2">待确认（待接单）</span>
+                        <span v-if="item.status == 3">制作中</span>
+                        <span v-if="item.status == 4">配送中</span>
+                        <span v-if="item.status == 5">待支付</span>
+                        <span v-if="item.status == 6">已取消</span>
+                    </td>
+                    <td>
+                        <span class="btn btn-sm btn-warning" @click="changeOrderStatus(item.order_id, 3)" v-if="item.status == 2">接单</span>
+                        <span class="btn btn-sm btn-primary" @click="changeOrderStatus(item.order_id, 4)" v-if="item.status == 3">标位配送中</span>
+                        <span class="btn btn-sm btn-primary" @click="changeOrderStatus(item.order_id, 1)" v-if="item.status == 4">完成订单</span>
+                        <span class="btn btn-sm btn-danger" @click="changeOrderStatus(item.order_id, 7)" v-if="item.status == 2">拒绝订单</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="/static/lib/vue.js"></script>
+<script src="/static/lib/axios.js"></script>
+<script src="/static/js/index/admin/order.min.js"></script>

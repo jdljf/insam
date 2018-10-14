@@ -1,0 +1,5 @@
+{
+    "require": {
+        "naixiaoxin/think-wechat": "^1.0"
+    }
+}

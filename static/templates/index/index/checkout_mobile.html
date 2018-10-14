@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>确认订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/index/index/checkout.min.css" />
+</head>
+
+<body>
+    <div class="mobile-app">
+        <div class="app-header">
+            <div class="logo-wrap">
+                <h1>INSAM</h1>
+            </div>
+            <a href="/user/"> <img src="{:Session::get('avatar')}" class="user-image" /></a>
+        </div>
+        <div class="address-wrap">
+            <div class="address-empty" @click="edit" v-if="empty">编辑收货地址</div>
+            <div class="address-exist" v-show="show" @click="change">
+                <div class="person">
+                    <span class="name">收货人:{{name}}</span>
+                    <span class="phone">{{phone}}</span>
+                </div>
+                <span class="address">收获地址:{{address}}</span>
+            </div>
+            <div class="address-edit" v-show="showFlag">
+                <h2 class="change">编辑地址</h2>
+                <span class="save" @click="save($event)">保存</span>
+                <input type="text" placeholder="请输入收货地址" ref="address" :value="address">
+                <input type="text" placeholder="联系人姓名" ref="fullName" :value="name">
+                <input type="text" placeholder="联系人电话" ref="phoneNumber" :value="phone">
+            </div>
+        </div>
+
+        <div class="shopping-discount" v-if="couponAry.length" @click="showCoupon = true" >
+            <span class="coupon-title">优惠券</span>
+            <p class="coupon-number">
+                <span  class="coupon-use" >{{coupon_info}}</span>
+            </p>
+            <i class="coupon-icon  fa fa-angle-right"></i>
+        </div>
+
+        <div class="checkout-content">
+            <div class="design-content">
+                <div class="title-item">
+                    <p class="design">款式(默认)</p>
+                    <div class="picture">
+                        <img :src="styleItem.image" style="width:80px;height:80px;margin-right: 5px;" alt="衣服">
+                    </div>
+                    <div class="detail">
+                        <span class="name">{{styleItem.name}}</span>
+                        <span class="singlePrice" ><i class="fa fa-rmb rmb" aria-hidden="true" ></i>{{styleItem.price}}</span>
+                        <br/>
+                        <span class="style">款式:{{styleList.sex}}{{styleList.style}}</span>
+                        <span class="style">颜色:{{styleList.color}}</span>
+                        <p class="pattern"><span style="margin-right: 7px;">材质:{{styleList.material}}</span><span>尺码:{{styleList.size}}码</span></p>
+                        <p class="pattern">图案:{{styleItem.image_name}}</p>
+                        <p class="num"> x {{num}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="total">
+                <span class="buy">购买数量</span>
+                <div class="cart">
+                    <span class="minus" @click="minus">-</span>
+                    <span class="number">{{num}}</span>
+                    <span class="add" @click="add">+</span>
+                </div>
+            </div>
+            <div class="shopping-wrap">
+                <span class="item-title">配送方式</span>
+                <span class="item-content">包邮</span>
+            </div>
+            <div class="checkout-bottom">
+                <span class="amount">共{{num}}件商品</span>
+                <span class="totalPrice">小计：<strong class="price"> <i class="fa fa-rmb rmb" aria-hidden="true" ></i>{{ totalPrice }}</strong></span>
+            </div>
+        </div>
+
+
+        <div class="coupon-filter-wrap" v-show="showCoupon">
+            <div class="coupon-list-filter"  @click="showCoupon = false">
+            </div>
+            <div class="coupon-list">
+                <p class="coupon-list-title">优惠券<i class="coupon-list-close fa fa-close " @click="showCoupon = false" ></i></p>
+                <ul class="coupon-wrap">
+                    <li class="coupon-item" v-for="item of couponAry"  :key="item.key">
+                        <div class="coupon-item-title coupon-px">
+                            <span class="coupon-item-sp">{{ typeCoupon = item.type === 1 ? '满减券': '打折券' }}</span>
+                        </div>
+                        <div class="coupon-item-detail coupon-px">
+                            <span v-if="item.type === 1">
+                                <i class="fa fa-rmb" aria-hidden="true" ></i>
+                                <span>{{item.coupon}}</span>
+                            </span>
+                            <span v-else>
+                                <strong >{{item.coupon*10}}折</strong>
+                            </span>
+                        </div>
+                        <div class="coupon-item-info coupon-px">
+                            <span>有效期至 {{item.expire_time | sortType}}</span>
+                            <span>{{item.name}}-{{item.coupon_limit | couponType}}</span>
+                        </div>
+                        <div class="coupon-line"></div>
+                        <div class="coupon-item-bar" @click="useCoupon(item.id)">使用</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="footer" @click="createPayment">
+            	去支付
+        </div>
+        <input type="hidden" id="order-id" value="{:input('get.order_id')}" />
+    </div>
+    <!-- <script src="/static/lib/vue.js"></script> -->
+    {include file="index/footer_mobile" /}
+    <script src="/static/lib/lodash.js"></script>
+    <script src="/static/js/index/index/checkout_mobile.min.js?v=1"></script>
+</body>
+
+</html>

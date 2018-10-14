@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="/static/lib/bootstrap.css" />
+<link rel="stylesheet" href="/static/css/index/index/designer_manage.min.css" />
+<div class="content-app">
+    <div class="col-lg-12">
+        <h3>管理我的设计图案</h3>
+        <div class="style-list">
+            <div class="style-item" v-for="item in imageList">
+                <div class="info-header">
+                    <div class="edit-btn" @click="openEditBox(item.id)">编辑</div>
+                </div>
+                <div class="image-wrap">
+                    <img :src="'/uploads/' + item.image.positive" />
+                </div>
+                <div class="style-detail">
+                    <span class="type-label" v-for="label in item.labels" v-text="label"></span>
+                    <span class="type-label"v-if="item.type == 1">彩喷</span>
+                    <span class="type-label"v-if="item.type == 2">激光</span>
+                    <span class="price-label">{{item.price}}元</span>
+                </div>
+            </div>
+            <div @click="openEditBox('')" class="style-item add-style-item">
+                <i class="iconfont">+</i>
+                <strong>添加新图案</strong>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-edit-box" v-show="editBoxFlag == 1">
+        <div class="edit-content">
+            <h4 v-show="editBoxValue.id > 0">编辑款式</h4>
+            <h4 v-show="editBoxValue.id == 0">新增图案</h4>
+            <span class="close-btn" @click="editBoxFlag = 0">×</span>
+            <div class="content-list">
+                <div class="form-group upload-image-wrap">
+                    <div class="image-item">
+                        <label>正面图</label>
+                        <img v-show="editBoxValue.image.positive.length > 0" :src="'/uploads/' + editBoxValue.image.positive" />
+                        <span class="btn btn-primary btn-sm" id="upload-positive-btn">上传</span>
+                    </div>
+                    <div class="image-item">
+                        <label>反面图（可选）</label>
+                        <img v-show="editBoxValue.image.reverse.length > 0" :src="'/uploads/' + editBoxValue.image.reverse" />
+                        <span class="btn btn-primary btn-sm" id="upload-reverse-btn">上传</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>类型</label>
+                    <select class="form-control" v-model="editBoxValue.type">
+                        <option value="1">彩喷专用</option>
+                        <option value="2">激光专用</option>
+                        <!--<option value="3">通用</option>-->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>标签</label>
+                    <div class="label-list">
+                        <div class="label-item" v-for="label in editBoxValue.labels" @click="editBoxValue.labels.splice(editBoxValue.labels.indexOf(label), 1)" v-text="label"></div>
+                    </div>
+                    <select class="form-control label-select-list" v-model="labelTmp">
+                        <option :value="item.label"  v-for="item in tagList" v-text="item.label"></option>
+                    </select>
+                    <span class="btn btn-sm btn-info"  @click="changeLabel">添加</span>
+                </div>
+                <div class="form-group">
+                    <label>tif格式地址</label>
+                    <input type="text" placeholder="tif格式地址"  v-model="editBoxValue.tif" class="form-control">
+                    <span class="btn btn-primary btn-sm" id="upload-tif-btn">上传</span>
+                </div>
+                <div class="form-group">
+                    <label>图案名字</label>
+                    <input type="text" placeholder="图案名字（可选）"  v-model="editBoxValue.name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>售价</label>
+                            <input type="number" placeholder="图案零售价格(元)" class="form-control" v-model="editBoxValue.price" />
+                            <span class="cost-price" style="display:inline-block;color:#aaa;margin-top:10px">建议价：原创图5元 非原创（网络图）1元</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="btn btn-primary" @click="submitStyleEdit" v-show="editBoxValue.id > 0">确认编辑</span>
+                    <span class="btn btn-primary" @click="submitStyleEdit" v-show="editBoxValue.id == 0">确认新增</span>
+                    <span class="btn btn-danger" @click="deleteImage(editBoxValue.id)" v-show="editBoxValue.id > 0">删除</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/lib/vue.js"></script>
+<script src="/static/lib/axios.js"></script>
+<script src="/static/lib/plupload/plupload.full.min.js"></script>
+<script src="/static/js/index/index/designer_manage.min.js?v=2"></script>

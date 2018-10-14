@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择优惠券</title>
+    <link rel="stylesheet" href="/static/lib/bootstrap.css" />
+</head>
+
+<body>
+    <div class="content-app">
+        <div class="page-header">
+            当前位置：
+            <span class="text-primary">选择优惠券</small>
+            </span>
+        </div>
+        <div class="page-content">
+            <form action="" method='post' class='form-horizontal form-validate'>
+                <div class="form-group" style="margin: 20px 0">
+                    <div class="col-sm-6 col-xs-9">
+                        <select name="couponid" ref="couponSelected" @change="selectCoupon" v-model="config_value" class="form-control" id="value_5">
+                            <option :value="item.id" v-for="(item,index) in couponList">{{item.name}} {{item.coupon_limit==1?'通用券':coupon_limit==2?'款式优惠券':'图案优惠券'}} </option>
+                        </select>
+                        <span class="help-block">剩余{{remain}}张</span>
+                    </div>
+                </div>
+                <span class="help-block" v-show="tipTag" style="margin-left: 20px;font-size: 14px;width: 80px;height: 30px;line-height: 30px;text-align: center;background-color: #cccccc;color: #ffffff">{{tipText}}</span>
+                <input type="button" value="保存" @click="save" style="margin-left: 20px" class="btn btn-primary" :class="{'disabled':tipTag}">
+            </form>
+        </div>
+    </div>
+    {include file="index/footer_mobile" /}
+    <script src="/static/lib/vue.js"></script>
+    <script src="/static/js/index/admin/select_coupon.min.js?v=10"></script>
+</body>
+
+</html>

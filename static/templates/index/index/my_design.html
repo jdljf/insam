@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的设计</title>
+    <meta name="description" content="" />
+    <meta content="" name="keywords" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/index/index/my_design.min.css" />
+</head>
+
+<body>
+    <div class="mobile-app">
+        <div class="app-header">
+            <div class="logo-wrap">
+                <h1>INSAM</h1>
+            </div>
+            <a href="/user/"> <img src="{:Session::get('avatar')}" class="user-image" />
+                </a>
+        </div>
+        <div class="checkout-content" v-for="(item,index) in designItem">
+            <div class="design-content">
+                <div class="title-item">
+                    <p class="design">款式</p>
+                    <div class="picture" v-show = "JSON.parse(item.image).image_path!=''">
+                        <img :src="'/uploads/' + JSON.parse(item.image).image_path" style="width:60px;height:60px;" alt="衣服">
+                    </div>
+                    <div class="detail">
+                        <span class="name">{{item.name}}</span>
+                        <br/>
+                        <span class="style">款式:{{designStyle[index].sex}}{{designStyle[index].style}}</span>
+                        <span class="style">颜色:{{designStyle[index].color}}</span>
+                        <span class="style">材质:{{designStyle[index].material}}</span>
+                        <span class="style">尺码:{{designStyle[index].size}}码</span>
+                        <p class="pattern">图案:{{JSON.parse(item.image).image_name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="delivery">
+                <div class="time">
+                    {{ctime[index]}}
+                </div>
+                <div class="delivery-info">
+                    <div class="statusChange" @click="delete_design(item.id)" >删除设计</div>
+                    <a :href="'/design?t=1'+'&'+'design_id=' + item.id" class="pay-btn"  >编辑</a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="confirm-delete">
+            <h1>是否确认删除设计</h1>
+            <span class="yes" ">确认</span>
+            <span class="no">取消</span>
+        </div>
+        <div class="mask"></div> -->
+    </div>
+    {include file="index/footer_mobile" /}
+    <script src="/static/js/index/index/my_design.min.js"></script>
+</body>
+
+</html>

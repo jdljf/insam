@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>INSAM映想</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/index/index/index.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.min.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="/static/lib/swiper.css"/>-->
+    <link rel="stylesheet" type="text/css" href="/static/lib/swiper.min.css"/>
+    <link rel="stylesheet" href="/static/lib/font-awesome.css" />  
+</head>
+
+<body style="background: #f0f0f0;">
+    <div class="mobile-app" :class="{height: select}">
+        <div class="app-header">
+            <div class="logo-wrap">
+                <h1>INSAM</h1>
+            </div>
+            <a href="/user/"> <img src="{:Session::get('avatar')}" class="user-image" />
+                </a>
+        </div>
+  
+        <!--<div class="swiper" style="margin-top: 53px;overflow: hidden;height: 13rem;">
+        	
+			    <swiper :options="swiperOption" style="height: 100%;" id="swiper" v-show="show">
+			      <swiper-slide v-for="(item, index) in slides" :key="index"><img style="height: 100%;width: 100%;" :src="item"></swiper-slide>
+			      <div class="swiper-pagination" slot="pagination"></div>
+			    </swiper>
+			  </div>-->
+        
+        
+        <div class="swiper-container" id="swiper_container">
+        	<div v-show="!show" style="width: 100%;height: 100%;"></div>
+				  <div v-show="show" class="swiper-wrapper">
+				    <!--<div class="swiper-slide" v-for="(item, index) in slides"><img style="height: 100%;width: 100%;" :src="item"></div>-->
+				    
+				    	{volist name="banner" id="vo"}
+			        	<div class="swiper-slide"><a href="{$vo.url}"><img src="/uploads/{$vo.image}" alt="" /></a></div>
+			        {/volist}
+				    
+				  </div>
+				  
+				  <div class="swiper-pagination"></div>
+				</div>
+        
+        
+        
+        <div style="height: 2.5rem;line-height: 3rem;padding: 0 0.5rem;font-weight: 600;">最新</div>
+        
+        <div class="tabs">
+        	{volist name="list" id="vo2"}
+	        	<a class="tab" href="/design?t=1&design_id={$vo2.design_id}">
+	        		<img src="/uploads/{$vo2.image}" alt="" />
+	        		<div class="message">
+	        			<div class="lh" style="font-weight: bolder;">{$vo2.image_name}</div>
+	        			<div class="lh">￥<span style="padding-left: 0.2rem;">{$vo2.price}</span></div>
+	        			<div>立即购买</div>
+	        		</div>
+	        	</a>	
+        	{/volist}
+        </div>
+        
+        
+        <div style="text-align: center;height: 4.5rem;line-height: 4rem;font-size: 0.9rem;" @click="select = true">
+        	<span>查看更多有趣的图案<i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i></span>
+        	<!--<i class="fa fa-spinner fa-spin" v-show="loadStatus"></i>-->
+        </div>
+				
+				<a href="https://static.meiqia.com/dist/standalone.html?_=t&eid=121524" class="service">
+					<!--<i class="iconfont icon-customer" style="color: #FAD033;font-size: 3.2rem;">&#xe71f;</i>-->
+					<img src="/static/img/customer.png" alt="" />
+					<div class="contact-service">联系客服</div>
+				</a>
+				
+        
+        <div class="bottom-bar" @click="select = true">前往定制</div>
+        <div class="mask" v-show="select" @click="select = false"></div>
+        <div class="selects" v-show="select">
+        	<div class="please-select">请选择</div>
+        	<a class="select-item" href="/design?t=1" >数码彩喷</a>
+        	<a class="select-item" href="/design?t=2">激光速绘</a>
+        	<!--<a class="select-item">上传我的图片</a>-->
+        	<a href="https://static.meiqia.com/dist/standalone.html?_=t&eid=121524" class="select-item">团体定制</a>
+        </div>
+    </div>
+    {include file="index/footer_mobile" /}
+    <script src="/static/js/index/index/index.min.js"></script>
+    <script src="/static/lib/swiper.min.js"></script>
+    <script>  
+				var swiper = new Swiper ('.swiper-container', {
+			  	speed: 200,
+			  	autoplay: {
+			  		delay: 2000,
+			  		disableOnInteraction: false,
+			  	},
+			    loop: true,
+			    // 如果需要分页器
+			    pagination: {
+			      el: '.swiper-pagination',
+			    	clickable: true,
+			    },
+			    preventClicksPropagation: false,
+			  })     
+			  
+			  swiper.params.pagination.clickable = true ;
+				//此外还需要重新初始化pagination
+				swiper.pagination.destroy()
+				swiper.pagination.init()
+				swiper.pagination.bullets.eq(0).addClass('swiper-pagination-bullet-active');
+		</script>
+</body>
+
+</html>

@@ -1,0 +1,745 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: KaiTi;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+@font-face {
+  font-family: 'iconfont';
+  /* project id 663857 */
+  src: url("//at.alicdn.com/t/font_663857_xu513syf1ng.eot");
+  src: url("//at.alicdn.com/t/font_663857_xu513syf1ng.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.woff") format("woff"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.ttf") format("truetype"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.svg#iconfont") format("svg"); }
+
+.clearfix:after, .mobile-app .app-header:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale; }
+
+.mobile-app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #fff; }
+  .mobile-app .empty {
+    display: inline-block;
+    pointer-events: none;
+    line-height: 20px;
+    text-align: center;
+    width: 50px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #333333;
+    border: 1px dashed #8e8e8e;
+    background: #e6e6e6 !important;
+    color: #afafaf !important; }
+  .mobile-app [v-cloak] {
+    display: none; }
+  .mobile-app .app-header {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border-bottom: 1px solid #e2e2e2; }
+    .mobile-app .app-header .page-title {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      left: 0;
+      line-height: 50px;
+      top: 0; }
+    .mobile-app .app-header .logo-wrap {
+      float: left; }
+      .mobile-app .app-header .logo-wrap h1 {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 20px;
+        color: black; }
+        .mobile-app .app-header .logo-wrap h1 .slogan {
+          font-size: 14px;
+          margin-top: 8px;
+          color: #666; }
+        .mobile-app .app-header .logo-wrap h1:after {
+          content: '';
+          display: block;
+          position: absolute;
+          z-index: 1000;
+          bottom: -4px;
+          left: 2px;
+          width: 30px;
+          height: 3px;
+          background: black; }
+    .mobile-app .app-header .user-image {
+      position: absolute;
+      right: 15px;
+      top: 5px;
+      border-radius: 30px;
+      width: 40px;
+      height: 40px; }
+  .mobile-app .edit-box {
+    position: fixed;
+    top: 50px;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    overflow: scroll;
+    width: 100%;
+    background-color: #fff; }
+    .mobile-app .edit-box .shirt-bg {
+      width: 100%; }
+    .mobile-app .edit-box .double-face {
+      margin: 0 auto;
+      padding: 1rem 0 0.7rem;
+      font-size: 0;
+      width: 7.5rem; }
+      .mobile-app .edit-box .double-face .face {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+        height: 1.88rem;
+        line-height: 2rem;
+        text-align: center;
+        font-size: 0.8rem;
+        border: 1px solid #eeecec;
+        /* border-radius: 4px; */
+        box-sizing: border-box; }
+      .mobile-app .edit-box .double-face .faceActive {
+        color: #000;
+        background: #f9cd33;
+        border: none; }
+    .mobile-app .edit-box .fixface {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 7.5rem; }
+    .mobile-app .edit-box .addImage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: center;
+      z-index: 2;
+      overflow: hidden;
+      font-size: 0; }
+      .mobile-app .edit-box .addImage .img-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        font-size: 0; }
+        .mobile-app .edit-box .addImage .img-container img {
+          max-width: 100%;
+          border: none; }
+        .mobile-app .edit-box .addImage .img-container .circle {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          background-color: #00ffff;
+          border-radius: 50%; }
+        .mobile-app .edit-box .addImage .img-container .left-top {
+          left: -3px;
+          top: -3px; }
+        .mobile-app .edit-box .addImage .img-container .left-middle {
+          left: -3px;
+          top: 50%;
+          -ms-transform: translateY(-50%);
+              transform: translateY(-50%); }
+        .mobile-app .edit-box .addImage .img-container .left-bottom {
+          left: -3px;
+          bottom: -3px; }
+        .mobile-app .edit-box .addImage .img-container .right-top {
+          right: -3px;
+          top: -3px; }
+        .mobile-app .edit-box .addImage .img-container .right-middle {
+          right: -3px;
+          top: 50%;
+          -ms-transform: translateY(-50%);
+              transform: translateY(-50%); }
+        .mobile-app .edit-box .addImage .img-container .right-bottom {
+          right: -3px;
+          bottom: -3px; }
+        .mobile-app .edit-box .addImage .img-container .top-middle {
+          left: 50%;
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+          top: -3px; }
+        .mobile-app .edit-box .addImage .img-container .bottom-middle {
+          left: 50%;
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+          bottom: -3px; }
+        .mobile-app .edit-box .addImage .img-container .iconfont {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          text-align: center;
+          font-size: 14px;
+          color: #666;
+          border: 1px solid #666;
+          overflow: auto; }
+        .mobile-app .edit-box .addImage .img-container .move {
+          position: absolute;
+          left: -10px;
+          top: -10px;
+          z-index: 1021; }
+        .mobile-app .edit-box .addImage .img-container .rotate {
+          position: absolute;
+          right: -10px;
+          top: -10px;
+          z-index: 1021; }
+        .mobile-app .edit-box .addImage .img-container .scale {
+          position: absolute;
+          right: -10px;
+          bottom: -10px;
+          z-index: 1021; }
+        .mobile-app .edit-box .addImage .img-container .close {
+          position: absolute;
+          left: -10px;
+          bottom: -10px;
+          z-index: 1021; }
+    .mobile-app .edit-box .tips {
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: center;
+      line-height: 0.9rem;
+      color: #000;
+      font-size: 0.8rem;
+      white-space: nowrap; }
+    .mobile-app .edit-box .info {
+      text-align: left;
+      left: 0;
+      right: 0;
+      bottom: 41px;
+      color: black;
+      font-size: 14px;
+      background-color: #fff;
+      border-bottom: 0.4rem solid #eeecec;
+      border-top: 0.3rem solid #eeecec; }
+      .mobile-app .edit-box .info li .desc {
+        padding-left: 20px;
+        line-height: 30px;
+        height: 30px;
+        font-weight: bold;
+        font-size: 0.8rem; }
+      .mobile-app .edit-box .info li .style-info {
+        display: inline-block;
+        font-size: 0.9rem; }
+      .mobile-app .edit-box .info li .cost-wrapp {
+        position: relative;
+        display: inline-block;
+        height: 30px;
+        min-width: 5rem;
+        vertical-align: bottom;
+        float: right;
+        margin-right: 10px;
+        margin-top: 9px;
+        font-size: 0.9rem; }
+      .mobile-app .edit-box .info li .price-info {
+        position: absolute;
+        right: 10px;
+        line-height: 30px;
+        font-size: 0.9rem; }
+        .mobile-app .edit-box .info li .price-info.total-price {
+          color: #ff0000; }
+        .mobile-app .edit-box .info li .price-info .discount {
+          padding: 0 0.2rem;
+          background: #ff4747;
+          color: #fff;
+          font-size: 0.6rem; }
+      .mobile-app .edit-box .info li .style-infos {
+        font-size: 0;
+        display: inline-block; }
+        .mobile-app .edit-box .info li .style-infos span {
+          display: inline-block;
+          font-size: 0.8rem;
+          margin-right: 0.38rem; }
+      .mobile-app .edit-box .info .cost-price {
+        height: 0.7rem;
+        line-height: 0.7rem;
+        font-size: 0.7rem;
+        text-align: right;
+        padding-right: 10px;
+        text-decoration: line-through;
+        color: #ccc; }
+      .mobile-app .edit-box .info .price {
+        margin-top: 8px;
+        color: #ff4418; }
+    .mobile-app .edit-box .fixinfo {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%; }
+  .mobile-app .image-style-container {
+    display: none;
+    height: 100%;
+    position: fixed;
+    bottom: 0;
+    top: 51px;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    box-shadow: 0 -1px 3px #ddd;
+    overflow-y: scroll;
+    background: #EEECEC; }
+    .mobile-app .image-style-container .header-content {
+      padding: 10px 10px 10px 0;
+      margin-top: 12px;
+      overflow: hidden; }
+      .mobile-app .image-style-container .header-content .style-selected-item {
+        border-radius: 2px;
+        padding: 10px;
+        margin-left: 10px;
+        color: #999;
+        background: white;
+        font-size: 12px; }
+        .mobile-app .image-style-container .header-content .style-selected-item.selected {
+          background: #808cda;
+          color: #fff; }
+    .mobile-app .image-style-container .main-content {
+      overflow: scroll; }
+      .mobile-app .image-style-container .main-content .image-style-title {
+        font-size: 1.1rem;
+        height: 3.3rem;
+        color: #000;
+        padding-top: 0.5rem;
+        margin-left: 0.6rem; }
+      .mobile-app .image-style-container .main-content .content-item {
+        position: fixed;
+        top: 51px;
+        left: 0;
+        right: 0;
+        padding: 0;
+        height: 100px;
+        background-color: #f3f3f3;
+        font-size: 0; }
+        .mobile-app .image-style-container .main-content .content-item .item-label {
+          width: 40px;
+          font-size: 12px;
+          line-height: 40px; }
+        .mobile-app .image-style-container .main-content .content-item .item-value-wrap {
+          display: inline-block;
+          white-space: nowrap;
+          width: 100%;
+          overflow-x: scroll; }
+          .mobile-app .image-style-container .main-content .content-item .item-value-wrap .item-value {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px;
+            margin-left: 10px;
+            border-radius: 2px;
+            font-size: 12px;
+            background: white;
+            color: #999; }
+            .mobile-app .image-style-container .main-content .content-item .item-value-wrap .item-value:first-child {
+              background-color: none;
+              color: #333; }
+            .mobile-app .image-style-container .main-content .content-item .item-value-wrap .item-value.selected {
+              background: #808cda;
+              color: white; }
+      .mobile-app .image-style-container .main-content .customer-image-wrap {
+        border-bottom: 0.6rem solid #fff; }
+        .mobile-app .image-style-container .main-content .customer-image-wrap .upload-image-wrap {
+          width: 11rem;
+          height: 8.2rem;
+          border: 1px solid #ddd;
+          margin: 0 auto;
+          text-align: center;
+          border-radius: 10px;
+          background: #fff; }
+          .mobile-app .image-style-container .main-content .customer-image-wrap .upload-image-wrap .iconfont {
+            display: block;
+            font-size: 20px;
+            margin: 40px 0 20px; }
+        .mobile-app .image-style-container .main-content .customer-image-wrap .upload-image-remind {
+          width: 19rem;
+          text-align: center;
+          font-size: 0.85rem;
+          line-height: 1.5rem;
+          margin: 1.6rem auto 1.8rem; }
+        .mobile-app .image-style-container .main-content .customer-image-wrap .preview-image-wrap {
+          width: 150px;
+          margin: 10px;
+          display: inline-block;
+          height: 150px;
+          text-align: center;
+          float: left; }
+          .mobile-app .image-style-container .main-content .customer-image-wrap .preview-image-wrap .upload-text-upload {
+            display: inline-block;
+            margin-top: 30px; }
+          .mobile-app .image-style-container .main-content .customer-image-wrap .preview-image-wrap .preview-image {
+            max-width: 100%;
+            max-height: 100%; }
+      .mobile-app .image-style-container .main-content .image-classify {
+        padding: 0 0.6rem;
+        padding-top: 1.5rem;
+        padding-bottom: 5.4rem; }
+        .mobile-app .image-style-container .main-content .image-classify .classify-title {
+          font-size: 1.1rem;
+          color: #101010;
+          font-weight: 600; }
+        .mobile-app .image-style-container .main-content .image-classify .classifys {
+          font-size: 0;
+          margin: 0.4rem 0 0.8rem;
+          display: -ms-flexbox;
+          display: flex; }
+          .mobile-app .image-style-container .main-content .image-classify .classifys .main-item {
+            -ms-flex: 0 0 30px;
+                flex: 0 0 30px;
+            display: inline-block;
+            margin-right: 1rem;
+            margin-top: 0.6rem;
+            font-size: 0.9rem; }
+            .mobile-app .image-style-container .main-content .image-classify .classifys .main-item:first-child {
+              font-weight: 600; }
+          .mobile-app .image-style-container .main-content .image-classify .classifys .label-detail {
+            -ms-flex: 1;
+                flex: 1; }
+            .mobile-app .image-style-container .main-content .image-classify .classifys .label-detail .item-value {
+              display: inline-block;
+              margin-right: 1rem;
+              margin-top: 0.6rem;
+              font-size: 0.9rem; }
+              .mobile-app .image-style-container .main-content .image-classify .classifys .label-detail .item-value:first-child {
+                font-weight: 600; }
+              .mobile-app .image-style-container .main-content .image-classify .classifys .label-detail .item-value.selected {
+                color: #e94368; }
+        .mobile-app .image-style-container .main-content .image-classify .image-list {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap; }
+          .mobile-app .image-style-container .main-content .image-classify .image-list .doubleList {
+            -ms-flex: 1;
+                flex: 1;
+            width: 50%;
+            height: auto; }
+            .mobile-app .image-style-container .main-content .image-classify .image-list .doubleList .image-item {
+              position: relative;
+              width: 100%;
+              height: auto;
+              box-sizing: border-box;
+              margin-bottom: 0.4rem;
+              font-size: 0;
+              border: 1px solid transparent; }
+              .mobile-app .image-style-container .main-content .image-classify .image-list .doubleList .image-item.selected {
+                border: 1px solid #ff0000; }
+              .mobile-app .image-style-container .main-content .image-classify .image-list .doubleList .image-item img {
+                width: 100%;
+                height: 100%; }
+              .mobile-app .image-style-container .main-content .image-classify .image-list .doubleList .image-item .image-info {
+                position: relative;
+                width: 100%;
+                height: 35px;
+                background-color: #fff; }
+                .mobile-app .image-style-container .main-content .image-classify .image-list .doubleList .image-item .image-info .image-name {
+                  display: inline-block;
+                  position: absolute;
+                  top: 50%;
+                  -ms-transform: translateY(-50%);
+                      transform: translateY(-50%);
+                  left: 0.6rem;
+                  font-size: 0.8rem;
+                  max-width: 55%;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap; }
+                .mobile-app .image-style-container .main-content .image-classify .image-list .doubleList .image-item .image-info .image-price {
+                  display: inline-block;
+                  position: absolute;
+                  top: 50%;
+                  -ms-transform: translateY(-50%);
+                      transform: translateY(-50%);
+                  right: 0.6rem;
+                  font-size: 0.8rem;
+                  font-weight: bold; }
+          .mobile-app .image-style-container .main-content .image-classify .image-list .waters {
+            column-count: 2;
+            column-gap: 0;
+            padding: 0 0.3rem; }
+            .mobile-app .image-style-container .main-content .image-classify .image-list .waters .water {
+              width: 100%;
+              height: auto;
+              box-sizing: border-box;
+              break-inside: avoid;
+              padding: 0.1rem; }
+  .mobile-app .image-confirm {
+    position: fixed;
+    bottom: 10px;
+    z-index: 101;
+    text-align: center;
+    line-height: 40px;
+    width: 96%;
+    height: 40px;
+    background-color: #f9cd33;
+    color: #000;
+    left: 2%;
+    border-radius: 10px; }
+  .mobile-app .bottom-container {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 40px;
+    z-index: 100;
+    border-top: 1px solid #ddd; }
+    .mobile-app .bottom-container .cloth-style-container {
+      position: absolute;
+      display: none;
+      bottom: 41px;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 -1px 3px #ddd; }
+      .mobile-app .bottom-container .cloth-style-container .header-content {
+        padding: 15px 10px;
+        border-bottom: 1px solid #ddd; }
+        .mobile-app .bottom-container .cloth-style-container .header-content .style-selected-item {
+          color: #808cda;
+          font-size: 12px; }
+      .mobile-app .bottom-container .cloth-style-container .main-content {
+        background: #f6f5f5; }
+        .mobile-app .bottom-container .cloth-style-container .main-content .content-item {
+          padding: 10px; }
+          .mobile-app .bottom-container .cloth-style-container .main-content .content-item .item-label {
+            float: left;
+            width: 35px;
+            font-size: 12px;
+            line-height: 20px; }
+          .mobile-app .bottom-container .cloth-style-container .main-content .content-item .item-value-wrap .item-value {
+            display: inline-block;
+            line-height: 20px;
+            text-align: center;
+            width: 40px;
+            height: 20px;
+            margin-right: 14px;
+            border-radius: 2px;
+            font-size: 12px;
+            background: white;
+            color: #333333; }
+            .mobile-app .bottom-container .cloth-style-container .main-content .content-item .item-value-wrap .item-value.selected {
+              background: #808cda;
+              color: white; }
+            .mobile-app .bottom-container .cloth-style-container .main-content .content-item .item-value-wrap .item-value:last-child {
+              margin-right: 0; }
+    .mobile-app .bottom-container .buy-info-container {
+      display: none;
+      position: absolute;
+      bottom: 41px;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 -1px 3px #ddd;
+      padding-bottom: 5px;
+      overflow: hidden; }
+      .mobile-app .bottom-container .buy-info-container .header-content {
+        padding: 10px 10px;
+        border-bottom: 1px solid #ddd; }
+        .mobile-app .bottom-container .buy-info-container .header-content .style-selected-item {
+          color: #333;
+          font-size: 12px; }
+        .mobile-app .bottom-container .buy-info-container .header-content .total-price-item {
+          float: right;
+          color: #ff4418;
+          font-size: 12px; }
+      .mobile-app .bottom-container .buy-info-container .main-content .content-item {
+        padding: 12px 15px; }
+        .mobile-app .bottom-container .buy-info-container .main-content .content-item .item-label {
+          float: left;
+          width: 40px;
+          font-size: 12px;
+          line-height: 20px;
+          vertical-align: middle; }
+        .mobile-app .bottom-container .buy-info-container .main-content .content-item .item-value-wrap {
+          overflow-x: scroll; }
+          .mobile-app .bottom-container .buy-info-container .main-content .content-item .item-value-wrap .checkout-number {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px 10px;
+            outline: none; }
+          .mobile-app .bottom-container .buy-info-container .main-content .content-item .item-value-wrap .item-value {
+            border-radius: 2px;
+            font-size: 12px;
+            padding: 5px 5px; }
+            .mobile-app .bottom-container .buy-info-container .main-content .content-item .item-value-wrap .item-value.price-value {
+              color: #808cda; }
+    .mobile-app .bottom-container .style-confirm {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background-color: #f9cd33;
+      color: #000000; }
+    .mobile-app .bottom-container .footer {
+      display: -ms-flexbox;
+      display: flex;
+      width: 100%;
+      background: #fff; }
+      .mobile-app .bottom-container .footer .cloth-style-item,
+      .mobile-app .bottom-container .footer .image-style-item,
+      .mobile-app .bottom-container .footer .confirm-btn {
+        -ms-flex: 1;
+            flex: 1;
+        position: relative;
+        height: 100%;
+        text-align: center;
+        line-height: 40px;
+        font-size: 0.8rem;
+        color: #101010; }
+        .mobile-app .bottom-container .footer .cloth-style-item .lineRight,
+        .mobile-app .bottom-container .footer .image-style-item .lineRight,
+        .mobile-app .bottom-container .footer .confirm-btn .lineRight {
+          position: absolute;
+          right: 0;
+          bottom: 0; }
+      .mobile-app .bottom-container .footer .cloth-style-item {
+        border-right: 2px solid #eeecec; }
+      .mobile-app .bottom-container .footer .confirm-btn {
+        -ms-flex: 2;
+            flex: 2;
+        border: none;
+        background: #f9cd33;
+        color: #000; }
+      .mobile-app .bottom-container .footer span {
+        color: #808cda; }
+      .mobile-app .bottom-container .footer .underline:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        margin-left: -30px;
+        width: 60px;
+        height: 3px;
+        background: #808cda; }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>优惠券发放</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/lib/bootstrap.css" />
+    <link rel="stylesheet" href="/static/css/admin/batch_send_coupon.min.css" />
+</head>
+
+<body>
+    <div class="content-app" style="margin: 0 10px">
+        <div class="page-header">
+            当前位置：
+            <span class="text-primary">发放优惠券</small>
+            </span>
+        </div>
+        <div class="page-content">
+            <form action="" method='post' class='form-horizontal form-validate'>
+                <div class="form-group" style="margin: 20px 0">
+                    <label class="col-sm-1 control-label must">选择优惠券</label>
+                    <div class="col-sm-6 col-xs-9">
+                        <select name="couponid" ref="couponSelected" @change="selectCoupon" class="form-control" id="value_5">
+                            <option :value="index" v-for="(item,index) in couponList">{{item.name}} {{item.coupon_limit==1?'通用券':item.coupon_limit==2?'款式优惠券':'图案优惠券'}}</option>
+                        </select>
+                        <span class="help-block">剩余{{remain}}张</span>
+                    </div>
+                </div>
+                <div class="form-group" style="margin: 20px 0">
+                    <label class="col-sm-1 control-label must">每人发放数量</label>
+                    <div class="col-sm-6 col-xs-9">
+                        <input type="text" v-model="number" class="form-control" id="lastname" placeholder="发放数量">
+                        <span class="help-block">优惠券数量不足不能发放</span>
+                    </div>
+                </div>
+                <div class="form-group" style="margin: 20px 0">
+                    <label class="col-sm-1 control-label must">发放用户</label>
+                    <div class="col-sm-6 col-xs-9">
+                        <textarea class="form-control" placeholder="请输入手机号（以逗号分隔开）">{{phoneData.replace(/\s+/g, " ")}}</textarea>
+                        <span class="help-block">发放优惠券用户{{phone.length}}人</span>
+                    </div>
+                </div>
+                <div class="form-group" style="margin: 20px 0">
+                    <label class="col-sm-1 control-label must">通知推送设置</label>
+                    <div class="col-sm-6 col-xs-9">
+                        <!-- <select name="couponid" class="form-control" id="value_5">
+                            <option value=""></option>
+                        </select> -->
+                        <input type="text" class="form-control" id="lastname" placeholder="输入推送模板">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label"></label>
+                    <div class="col-sm-6 col-xs-8" style="margin-left: 15px">
+                        <div class="help-block">
+                            <span class="help-block" v-show="tipTag" style="font-size: 14px;width: 80px;height: 30px;line-height: 30px;text-align: center;background-color: #cccccc;color: #ffffff">{{tipText}}</span>
+                            <input type="button" @click="confirmSend" value="确认发放" class="btn btn-primary" :class="{'disabled':remain < number*phone.length || tipTag}"
+                            :style="remain < number*phone.length || tipTag?'pointer-events:none':''"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/static/lib/vue.js"></script>
+    <script src="/static/lib/axios.js"></script>
+    <script src="/static/js/index/admin/batch_send_coupon.min.js"></script>
+</body>
+
+</html>

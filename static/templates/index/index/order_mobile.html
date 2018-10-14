@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的订单</title>
+    <meta name="description" content="" />
+    <meta content="" name="keywords" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/index/index/order.min.css" />
+</head>
+
+<body>
+    <div class="mobile-app">
+        <div class="app-header">
+            <div class="logo-wrap">
+                <h1>INSAM</h1>
+            </div>
+            <a href="/user/"> <img src="{:Session::get('avatar')}" class="user-image" />
+                </a>
+        </div>
+        <div class="checkout-content" v-for="(item,index) in orderItem">
+            <div class="design-content">
+                <div class="title-item">
+                    <p class="design">款式(默认)</p>
+                    <div class="picture">
+                        <img :src="item.image" style="width:60px;height:60px;" alt="衣服">
+                    </div>
+                    <div class="detail">
+                        <span class="name">{{item.name}}</span>
+                        <span class="singlePrice">￥{{item.price}}</span>
+                        <br/>
+                        <span class="style">款式:{{orderStyle[index].sex}}{{orderStyle[index].style}}</span>
+                        <span class="style">颜色:{{orderStyle[index].color}}</span>
+                        <span class="style">材质:{{orderStyle[index].material}}</span>
+                        <span class="style">尺码:{{orderStyle[index].size}}码</span>
+                        <p class="pattern">图案:{{item.image_name}}</p>
+                        <p class="num"> x {{item.number}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-bottom">
+                <span class="amount">共{{item.number}}件商品</span>
+                <span class="totalPrice">小计：<strong class="price">￥{{item.price*num}}</strong></span>
+            </div>
+            <div class="delivery">
+                <div class="time">
+                    {{ctime[index]}}
+                </div>
+                <div class="delivery-info">
+                    <div class="orderText" v-if="item.status==1">已确认收货</div>
+                    <div class="orderText" v-if="item.status==6">已取消订单</div>
+                    <div class="orderText" v-if="item.status==3">制作中</div>
+                    <div class="orderText" v-if="item.status==4">配送中</div>
+                    <div class="orderText" v-if="item.status==7">订单被拒绝</div>
+                    <div class="statusChange" v-if="item.status==2" @click="changeOrderStatus(1, item.order_id)">待确认</div>
+                    <div class="statusChange" v-if="item.status==5" @click="changeOrderStatus(6, item.order_id)">取消订单</div>
+                    <a :href="'/checkout/?order_id=' + item.order_id" class="pay-btn" v-if="item.status==5" >前往支付</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {include file="index/footer_mobile" /}
+    <script src="/static/js/index/index/order_mobile.min.js"></script>
+</body>
+
+</html>

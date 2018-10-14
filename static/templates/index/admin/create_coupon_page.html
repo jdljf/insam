@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>生成优惠券</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/lib/bootstrap.css" />
+    <link rel="stylesheet" href="/static/css/admin/create_coupon_page.min.css" />
+</head>
+
+<body>
+    <div class="content-app" style="margin: 0 20px">
+        <div class="page-header">
+            当前位置：
+            <span class="text-primary">创建优惠券</small>
+            </span>
+        </div>
+
+        <div class="page-content">
+            <!-- <div class="page-sub-toolbar">
+                <span class=''>
+                    <a class='btn btn-primary btn-sm' href="">
+                        <i class='fa fa-plus'></i> 添加购物优惠券</a>
+                </span>
+            </div> -->
+            <form action="" method='post' class='form-horizontal form-validate'>
+                <input type="hidden" name="id" value="">
+                <input type="hidden" name="tab" id='tab' value="" />
+                <!-- <ul class="nav nav-arrow-next nav-tabs" id="myTab">
+                    <li class="active">
+                        <a href="#tab_basic">基本</a>
+                    </li>
+                    <li>
+                        <a>领取设置</a>
+                    </li>
+                    <li>
+                        <a>使用限制</a>
+                    </li>
+                    <li>
+                        <a href="#tab_resp">推送</a>
+                    </li>
+                    <li>
+                        <a href="#tab_usage">使用说明</a>
+                    </li>
+                </ul> -->
+                <div class="form-group center-block" style="margin-top: 10px">
+                    <label class="col-sm-1 control-label">优惠券名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ref="couponName" placeholder="请输入优惠券名称">
+                    </div>
+                </div>
+                <div class="form-group center-block" style="margin-top: 10px">
+                    <label class="col-sm-1 control-label">使用条件</label>
+                    <div class="col-sm-10">
+                        <input type="number" min="0" class="form-control" ref="condition" placeholder="请输入使用条件">
+                        <span class="help-block">消费满多少可使用</span>
+                    </div>
+                </div>
+
+                <div class="form-group center-block">
+                    <label class="col-sm-1 control-label">时间选择</label>
+                    <div class="col-sm-11" style="text-align: left;">
+                        <label class="radio-inline ">
+                            <input type="radio" name="time" @click="timeSelect(1)" value="1">有效时长</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="time" @click="timeSelect(2)"  value="2">时间范围</label>
+                    </div>
+                </div>
+
+                <div class="form-group center-block" style="margin-top: 10px" v-show="expiry.expire_type==2" >
+                    <label class="col-sm-1 control-label">有效期</label>
+
+                    <div class="col-sm-4" >
+                        <input type="date" class="form-control" ref="expiryDateStart" id="lastname" placeholder="有效期">
+                        <span class="help-block">按顺序填写起始时间和结束时间</span>                                           
+                    </div>
+
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control " ref="expiryDateEnd" placeholder="有效期">
+                    </div>
+
+                </div>
+
+                <div class="form-group center-block" style="margin-top: 10px" v-show="expiry.expire_type==1" >
+                    <label class="col-sm-1 control-label">有效时长</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control " ref="expiryDuration" placeholder="有效时长">
+                    </div>
+                </div>
+
+                <div class="form-group center-block">
+                    <label class="col-sm-1 control-label">优惠方式</label>
+                    <div class="col-sm-11" style="text-align: left;">
+                        <label class="radio-inline ">
+                            <input type="radio" name="backtype" @click="typeSelect('1')" value="1">立减</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="backtype" @click="typeSelect('2')" value="2">打折</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label"></label>
+                    <div class="col-sm-3 col-xs-4 backtype backtype0" v-show="couponType==1">
+                        <div class='input-group'>
+                            <span class='input-group-addon'>立减</span>
+                            <input type='text' class='form-control' ref="deduct" name='deduct' value="" />
+                            <span class='input-group-addon'>元</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 col-xs-4 backtype backtype1" v-show="couponType==2">
+                        <div class='input-group'>
+                            <span class='input-group-addon'>打</span>
+                            <input type='number' min="0.1" max="10" class='form-control' ref="discount" name='discount' placeholder='0.1-10' value="" />
+                            <span class='input-group-addon'>折</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group" >
+                        <label class="col-sm-1 control-label">选择优惠券</label>
+                        <div class="col-sm-3">
+                            <select name="couponid" ref="couponSelect" @change="getCouponType" class="form-control" >
+                                <option value="1">通用</option>
+                                <option value="2">款式</option>
+                                <option value="3">图案</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3" :style="coupon_limit==2?'display:block':'display:none'">
+                            <select  @change="styleSelect" ref="styleItem" value=""  class="form-control" >
+                                <!-- <option value=""></option> -->
+                                <option :value="index" v-for="(item,index) in styleTypeList">{{item.sex==1?'男款':'女款'}} {{item.color==3?'白色':'杏色'}} {{item.style==5?'圆领':'V领'}} {{item.matetial==7?'纯棉':'棉麻'}} {{item.type==1?'彩喷':'激光'}}</option>     
+                            </select>
+                        </div>
+                    </div>
+                <div class="form-group center-block" style="margin-top: 10px">
+                    <label class="col-sm-1 control-label">发放数量</label>
+                    <div class="col-sm-3">
+                        <input type="number" min="0" class="form-control" ref="number" placeholder="请输入发放数量">
+                    </div>
+                </div>
+
+                <div class="form-group"></div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label"></label>
+                    <div class="col-sm-6 col-xs-8">
+                        <span class="help-block" v-show="tipTag" style="font-size: 14px;width: 80px;height: 30px;line-height: 30px;text-align: center;background-color: #cccccc;color: #ffffff">{{tipText}}</span>
+                        <input type="button" value="提交" @click="createCoupon" class="btn btn-primary col-lg-1 create-coupon" 
+                        :class="confirmTag?'disabled':''" ref="createCoupon" :style="confirmTag?'pointer-events:none':''"
+                        />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/static/lib/vue.js"></script>
+    <script src="/static/lib/axios.js"></script>
+    <script src="/static/js/index/admin/create_coupon_page.min.js"></script>
+</body>
+
+</html>

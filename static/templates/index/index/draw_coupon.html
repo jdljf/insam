@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>领取优惠券</title>
+    <link rel="stylesheet" href="/static/css/index/index/draw_coupon.min.css" />
+</head>
+
+<body>
+    <div class="mobile-app">
+        <div class="coupon-info">
+            <div class="coupon-header" v-show="tag">
+                <span class="title">{{availableCoupon.name}}</span>
+                <div class="coupon-show">
+                    <strong class="coupon">{{availableCoupon.type==1?'立减'+ availableCoupon.coupon+'元':'打'+ availableCoupon.coupon * 10 +'折'}}</strong>
+                    <p class="coupon-require">满{{availableCoupon.require}}元</p>
+                </div>
+            </div>
+            <div class="coupon-header" v-show="!tag">
+                <div class="coupon-show">
+                    <strong class="coupon">暂无可领取的优惠券</strong>
+                </div>
+            </div>
+        </div>
+        <ul class="coupon-desc" v-show="tag">
+            <li class="deadline">
+                <span class="coupon-expiry-time">有效期限</span>
+                <p class="expiry-time" v-show="availableCoupon.expire_type==1">{{availableCoupon.expire_time==null?'无限期使用':availableCoupon.expire_time + '天内使用有效'}}</p>
+                <p class="expiry-time" v-show="availableCoupon.expire_type==2">{{availableCoupon.expire_time==null?'无限期使用':start_time +'至'+end_time +'内使用有效'}}</p>
+            </li>
+            <li class="limit">
+                <span class="use-limit">使用限制</span>
+                <p class="limit-desc">{{availableCoupon.coupon_limit==1?'通用券':availableCoupon.coupon_limit==2?'款式优惠券':'图案优惠券'}}</p>
+            </li>
+        </ul>
+        <div v-show="tag" class="confirm-draw-coupon" @click="drawCoupon" :class="availableCoupon.received==1?'received':availableCoupon.remain == 0?'remain':''"
+            :style="availableCoupon.received==1?'pointer-events:none':availableCoupon.remain == 0?'pointer-events:none':''">
+            {{availableCoupon.received==1?'已领取':availableCoupon.remain == 0?'优惠券领完啦':'立即领取'}}
+        </div>
+        <div class="tip" v-show="tipTag">
+            {{tipText}}
+        </div>
+    </div>
+    {include file="index/footer_mobile" /}
+    <script src="/static/js/index/index/draw_coupon.min.js?v=10"></script>
+</body>
+
+</html>

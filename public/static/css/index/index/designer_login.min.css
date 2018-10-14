@@ -1,0 +1,10 @@
+.app-index .form-wrap {
+  width: 60%;
+  margin: 5% auto 0;
+  border: 1px solid #ddd;
+  box-shadow: 1px 1px 2px #ddd;
+  padding: 20px; }
+  .app-index .form-wrap legend {
+    margin: 30px 0;
+    font-size: 22px;
+    text-align: center; }

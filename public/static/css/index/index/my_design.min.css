@@ -1,0 +1,264 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: KaiTi;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+@font-face {
+  font-family: 'iconfont';
+  /* project id 663857 */
+  src: url("//at.alicdn.com/t/font_663857_xu513syf1ng.eot");
+  src: url("//at.alicdn.com/t/font_663857_xu513syf1ng.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.woff") format("woff"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.ttf") format("truetype"), url("//at.alicdn.com/t/font_663857_xu513syf1ng.svg#iconfont") format("svg"); }
+
+.clearfix:after, .mobile-app .app-header:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale; }
+
+.mobile-app .app-header {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e2e2e2; }
+  .mobile-app .app-header .logo-wrap {
+    float: left; }
+    .mobile-app .app-header .logo-wrap h1 {
+      margin-top: 8px;
+      font-size: 20px;
+      color: black; }
+      .mobile-app .app-header .logo-wrap h1 .slogan {
+        font-size: 14px;
+        margin-top: 8px;
+        color: #666; }
+      .mobile-app .app-header .logo-wrap h1:after {
+        content: '';
+        display: block;
+        width: 30px;
+        height: 3px;
+        background: black;
+        mix-blend-mode: difference;
+        -ms-transform: translate(4px, 0);
+            transform: translate(4px, 0); }
+  .mobile-app .app-header .user-image {
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    float: right; }
+
+.mobile-app .checkout-content {
+  position: relative;
+  background: #fff;
+  font-size: 12px;
+  margin-bottom: 80px;
+  margin-top: 10px; }
+  .mobile-app .checkout-content:nth-child(n+3)::before {
+    content: '';
+    display: block;
+    position: relative;
+    top: -15px;
+    width: 100%;
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.2); }
+  .mobile-app .checkout-content .design-content {
+    padding: 0 10px;
+    overflow: hidden; }
+    .mobile-app .checkout-content .design-content .title-item {
+      position: relative;
+      background: #f4f4f4;
+      padding: 10px 0 20px 8px;
+      overflow: hidden; }
+      .mobile-app .checkout-content .design-content .title-item .design {
+        line-height: 14px;
+        margin: 10px 0; }
+      .mobile-app .checkout-content .design-content .title-item .picture {
+        display: inline-block;
+        vertical-align: top; }
+      .mobile-app .checkout-content .design-content .title-item .detail {
+        display: inline-block;
+        margin-left: 5px; }
+        .mobile-app .checkout-content .design-content .title-item .detail .style {
+          color: rgba(0, 0, 0, 0.7); }
+        .mobile-app .checkout-content .design-content .title-item .detail .num {
+          position: absolute;
+          right: 10px;
+          bottom: 20px; }
+        .mobile-app .checkout-content .design-content .title-item .detail .name {
+          display: inline-block;
+          margin-bottom: 10px;
+          font-weight: bold; }
+        .mobile-app .checkout-content .design-content .title-item .detail .singlePrice {
+          position: absolute;
+          right: 10px;
+          color: orangered;
+          font-weight: bold; }
+        .mobile-app .checkout-content .design-content .title-item .detail .pattern {
+          margin-top: 4px;
+          color: rgba(0, 0, 0, 0.7); }
+  .mobile-app .checkout-content .delivery {
+    position: relative;
+    width: 100%; }
+    .mobile-app .checkout-content .delivery .time {
+      position: absolute;
+      left: 10px;
+      top: 30px;
+      line-height: 20px;
+      text-align: center;
+      height: 20px;
+      font-size: 12px; }
+    .mobile-app .checkout-content .delivery .delivery-info {
+      position: absolute;
+      right: 10px;
+      top: 30px; }
+      .mobile-app .checkout-content .delivery .delivery-info .statusChange {
+        display: inline-block;
+        line-height: 20px;
+        text-align: center;
+        padding: 3px 10px;
+        font-size: 12px;
+        background-color: #e2e2e2;
+        border-radius: 20px; }
+      .mobile-app .checkout-content .delivery .delivery-info .pay-btn {
+        display: inline-block;
+        line-height: 20px;
+        text-align: center;
+        padding: 3px 10px;
+        font-size: 12px;
+        background-color: #e28428;
+        border-radius: 20px;
+        text-decoration: none;
+        color: #fff;
+        margin-left: 10px; }
+    .mobile-app .checkout-content .delivery:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 22px;
+      width: 100%;
+      height: 1px;
+      background-color: rgba(0, 0, 0, 0.2); }

@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="/static/lib/bootstrap.css" />
+<link rel="stylesheet" href="/static/css/admin/user.min.css" />
+<div class="content-app">
+    <div class="col-lg-12">
+       <div class="user-info-overview">
+           <a href="javascript:void(0)" @click="page = page - 1">上一页</a>
+           <a href="javascript:void(0)" @click="page = page + 1">下一页</a>
+           <span>当第<input class="form-control page-input input-sm" type="text" v-model="page" />页（输入数字可直接跳转）</span>
+
+           <span>共有用户{{totalUser}}位</span>
+       </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>用户id</th>
+                    <th>用户名</th>
+                    <th>头像</th>
+                    <th>电话号码</th>
+                    <th>注册时间</th>
+                    <th>操作</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in userList">
+                    <td v-text="item.id"></td>
+                    <td v-text="item.nickname"></td>
+                    <td>
+                        <img :src="item.avatar" class="user-avatar" />
+                    </td>
+                    <td v-text="item.phone"></td>
+                    <td v-text="item.ctime"></td>
+                    <td>
+                        <span class="btn btn-sm btn-info" v-if="item.is_designer == 0" @click="changeDesigner(item, 1)">设为设计师</span>
+                        <span class="btn btn-sm btn-danger" v-if="item.is_designer == 1" @click="changeDesigner(item, 0)">撤销设计师</span>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+<script src="/static/lib/vue.js"></script>
+<script src="/static/lib/axios.js"></script>
+<script src="/static/js/index/admin/user.min.js?v=1"></script>

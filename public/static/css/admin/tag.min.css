@@ -1,0 +1,15 @@
+.content-app {
+  background: #fff; }
+  .content-app .tag-list {
+    width: 80%;
+    margin: 0 auto; }
+    .content-app .tag-list li {
+      margin-bottom: 5px;
+      width: 49%;
+      display: inline-block; }
+      .content-app .tag-list li .tag-name {
+        display: inline-block;
+        width: 100px; }
+      .content-app .tag-list li .tag-index {
+        display: inline-block;
+        width: 100px; }

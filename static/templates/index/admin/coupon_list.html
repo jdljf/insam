@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>优惠券列表</title>
+    <link rel="stylesheet" href="/static/lib/bootstrap.css" />
+    <link rel="stylesheet" href="/static/css/admin/coupon_list.min.css" />
+</head>
+
+<body>
+    <div class="content-app" style="overflow: hidden;">
+        <div class="page-header">
+            当前位置：
+            <span class="text-primary">发放优惠券</small>
+            </span>
+        </div>
+        <div class="page-content">
+            <form action="" style="overflow: hidden;">
+                <span class='col-sm-4'>
+                    <a class='btn btn-primary btn-sm' href="/admin/create_coupon_page.html">
+                        <i class='fa fa-plus'></i> 添加购物优惠券</a>
+                </span>
+        </div>
+        </form>
+        <div class="page-table-header" style="padding-top: 20px">
+            <input type="checkbox">
+            <span class="btn-group">
+                <button class="btn btn-default btn-sm dropdown-toggle btn-operation" type="button">
+                    <i class='icow icow-shanchu1'></i>删除
+                </button>
+            </span>
+        </div>
+        <table class="table table-condensed " style="border-bottom: 1px solid #ccc">
+            <thead>
+                <tr>
+                    <th>优惠券id</th>
+                    <th>优惠券名称</th>
+                    <th>使用条件</th>
+                    <th>有效期</th>
+                    <th>优惠方式</th>
+                    <th>优惠券数量</th>
+                    <th>发放数量</th>
+                    <th>已使用数量</th>
+                    <td>数据导出</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in couponInfo">
+                    <td>
+                        {{item.id}}
+                        <td>{{item.name}}</td>
+                        <td>满{{item.require}}可用</td>
+                        <td v-if='item.expire_time==""'>无限期</td>
+                        <td v-else>{{item.expire_type==1?item.expire_time:item.expire_time.start_time + '至' + item.expire_time.end_time}}</td>
+                        <td v-show="item.type==1">立减</td>
+                        <td v-show="item.type==2">打折</td>
+                        <td>{{item.coupon_state.total}}</td>
+                        <td>{{item.coupon_state.total - item.coupon_state.remain}}</td>
+                        <td>{{item.coupon_state.used}}</td>
+                        <td>
+                            <a class="btn btn-danger" :href="'/index/admin/export_coupon?coupon_id='+item.id" target="_blank" style="width:50px;height:30px;padding:0 5px;margin-left: 10px; ">
+                            导出</a>
+                        </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="page-table-header" style="padding:10px 0;border-bottom: 1px solid #ccc">
+            <input type="checkbox">
+            <span class="btn-group">
+                <button class="btn btn-default btn-sm dropdown-toggle btn-operation" type="button">
+                    <i class='icow icow-shanchu1'></i>删除
+                </button>
+            </span>
+            <span class="pull-right">共{{couponInfo.length}}条记录</span>
+        </div>
+    </div>
+    </div>
+
+    <script src="/static/lib/vue.js"></script>
+    <script src="/static/lib/axios.js"></script>
+    <script src="/static/js/index/admin/coupon_list.min.js"></script>
+</body>
+
+</html>

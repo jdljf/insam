@@ -1,0 +1,38 @@
+@import "../../reset";
+
+.mobile-app {
+    .user-info {
+        padding: 20px 10px 0;
+
+        .form-group {
+            margin-bottom: 30px;
+
+            label {
+                width: 80px;
+                display: inline-block;
+                font-size: 16px;
+                color: #666;
+            }
+
+            .form-control {
+                width: 50%;
+                border: none;
+                font-size: 16px;
+                outline: none;
+            }
+
+            .edit-btn {
+                width: 100%;
+                margin: 10px auto;
+                display: block;
+                color: #fff;
+                font-size: 14px;
+                padding: 10px 0;
+                background: #509fdd;
+                text-align: center;
+                border-radius: 5px;
+            }
+        }
+    }
+
+}
